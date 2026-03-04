@@ -1,5 +1,5 @@
 class No:
-    def __init__(self, nome, autor, duracao):
+    def __init__(self, nome, autor, duracao):        
         self.nome = nome
         self.autor = autor
         self.duracao = duracao
@@ -19,7 +19,6 @@ class ArvoreBinariaBusca:
         print(f"Música '{nome}' inserida com sucesso!")
 
     def _inserir_recursivo(self, atual, novo_no):
-        # Organização alfabética (case-insensitive para evitar erros)
         if novo_no.nome.lower() < atual.nome.lower():
             if atual.esq is None:
                 atual.esq = novo_no
@@ -52,26 +51,29 @@ class ArvoreBinariaBusca:
 def executar_playlist():
     bst = ArvoreBinariaBusca()
     
-    # Lista fixa de 10 músicas para facilitar o teste
     musicas = [
-        ("Diaba", "Urias", 186),
-        ("AmarElo", "Emicida", 320),
-        ("Inertia", "AJR", 220),
-        ("Zombified", "Falling in Reverse", 218),
-        ("Bones", "Imagine Dragons", 165),
-        ("Hype", "Dizzee Rascal", 213),
-        ("Levitating", "Dua Lipa", 203),
-        ("Numb", "Linkin Park", 185),
-        ("Overpass Graffiti", "Ed Sheeran", 236),
-        ("X1", "MC IG", 145)
+        ("If We Being Real", "Yeat", 186),
+        ("Death Is No More", "Blessed Mane", 320),
+        ("Noir", "Sho", 220),
+        ("Lobster", "RJ Pasin", 218),
+        ("In Essence", "Ka$tro", 165),
+        ("Aura", "Ogryzek", 213),
+        ("Glory", "Ogryzek", 203),
+        ("Coma", "Andromeda, Elysian", 185),
+        ("Tiki Tiki", "Qmiir", 236),
+        ("Supersonic", "Khaos, Jmilton, Mc Jajá", 145)
     ]
+
 
     for m in musicas:
         bst.inserir(m[0], m[1], m[2])
 
-    print("\n" + "="*30)
+    bst.inserir("ZTeste", "Georges", 999)
+    bst.inserir("ATeste", "Georges", 999)
+
+    print("\n" + "="*50)
     busca = input("Digite o nome da música para buscar: ")
-    print("="*30)
+    print("="*50)
 
     no_encontrado, caminho, nivel = bst.buscar(busca)
 
@@ -81,7 +83,7 @@ def executar_playlist():
         print(f"Autor: {no_encontrado.autor}")
         print(f"Duração: {no_encontrado.duracao} segundos")
         print("\nCaminho percorrido:")
-        print(" → ".join(caminho))
+        print(" -> ".join(caminho))
         print(f"\nNível na árvore: {nivel}")
     else:
         print("\nMúsica não encontrada.")
